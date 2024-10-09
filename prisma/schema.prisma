@@ -8,12 +8,32 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   username       String
-  email          String   @unique
+  email          String    @unique
   hashedPassword String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  favoriteIds    String[] @db.ObjectId
+  createdAt      DateTime  @default(now())
+  routines       Routine[] @relation("UserRoutines")
+}
+
+model Routine {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String  
+  icon        String   
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], name: "UserRoutines")
+  userId    String   @db.ObjectId 
+  habits    Habit[]   @relation("RoutineHabits") 
+}
+
+model Habit {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String   
+  description String?  
+  time        String   
+  icon        String   
+  createdAt   DateTime @default(now())
+  routine     Routine  @relation(fields: [routineId], references: [id], name: "RoutineHabits")
+  routineId   String   @db.ObjectId 
 }
