@@ -33,7 +33,7 @@ export default async function RootLayout({
 					rel="stylesheet"
 				></link>
 			</head>
-			<body className={`${inter.className} bg-neutral-900`}>
+			<body className={`${inter.className} light bg-neutral-200`}>
 				<ToasterProvider />
 				<RegisterModal />
 				<LoginModal />

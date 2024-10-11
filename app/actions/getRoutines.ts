@@ -11,6 +11,9 @@ export default async function getRoutines() {
 			orderBy: {
 				createdAt: "desc",
 			},
+			include: {
+				habits: true,
+			},
 		});
 
 		return routines;

@@ -119,7 +119,7 @@ const RegisterModal = () => {
 
 	const footerContent = (
 		<div className="flex flex-col text-center items-center justify-center py-1 pt-3 relative">
-			<p className="flex flex-row gap-2">
+			<p className="flex flex-row gap-2 text-neutral-600">
 				Already have an account?{" "}
 				<span
 					onClick={switchModal}
