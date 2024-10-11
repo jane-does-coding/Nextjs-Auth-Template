@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import LoginModal from "@/components/Modals/LoginModal";
+import RoutineModal from "@/components/Modals/RoutineModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default async function RootLayout({
 				<ToasterProvider />
 				<RegisterModal />
 				<LoginModal />
+				<RoutineModal />
 				<Navbar currentUser={currentUser} />
 				{children}
 			</body>

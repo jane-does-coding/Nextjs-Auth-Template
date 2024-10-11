@@ -1,27 +1,26 @@
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "./getCurrentUser";
 
-export default async function getRoutines() {
+export default async function getRoutineById(routineId: any) {
 	try {
+		console.log("routineid: " + routineId);
 		const currentUser = await getCurrentUser();
 
 		if (!currentUser) return [];
 
-		const routines = await prisma.routine.findMany({
+		const routine = await prisma.routine.findUnique({
 			where: {
-				userId: currentUser.id,
-			},
-			orderBy: {
-				createdAt: "desc",
+				id: routineId,
 			},
 			include: {
+				user: true,
 				habits: true,
 			},
 		});
 
-		return routines;
+		return routine;
 	} catch (error) {
-		console.error("Error fetching routines:", error);
+		console.error("Error fetching routine:", error);
 		return { message: "Internal Server Error" };
 	}
 }
